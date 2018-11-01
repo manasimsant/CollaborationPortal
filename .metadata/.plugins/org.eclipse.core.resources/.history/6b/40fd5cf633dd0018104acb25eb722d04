@@ -1,0 +1,15 @@
+package com.coll.config;
+
+import java.sql.DriverManager;
+
+import javax.sql.DataSource;
+
+public class DBConfiguration {
+	
+	public DataSource getOracleDataSource() {
+		{
+			DriverManagerDataSource dataSource=new DriverManagerDataSource();
+			
+	}
+
+	}}

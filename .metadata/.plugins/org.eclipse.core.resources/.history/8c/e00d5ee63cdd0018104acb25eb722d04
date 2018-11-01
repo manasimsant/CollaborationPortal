@@ -1,0 +1,66 @@
+package com.coll.config;
+
+
+
+public class DBConfiguration {
+
+	@Bean(name="dataSource")
+	public DataSource getDataSource() {
+		
+			DriverManagerDataSource dataSource = new DriverManagerDataSource();
+			dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+			dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
+			dataSource.setUsername("System");
+			dataSource.setPassword("password");
+			System.out.println("--Created the DataSource -----");
+			return dataSource;
+
+		}
+
+	/*	@Bean(name="sessionFactory")
+	public SessionFactory getSessionFactory() {
+		Properties hibernateProp = new Properties();
+		hibernateProp.put("hibernate.hbmddl2.auto", "update");
+		hibernateProp.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
+
+		LocalSessionFactoryBuilder factoryBuilder = new LocalSessionFactoryBuilder(getDataSource());
+		factoryBuilder.addProperties(hibernateProp);
+		factoryBuilder.addAnnotatedClass(Blog.class);
+		SessionFactory sessionFactory = factoryBuilder.buildSessionFactory();
+
+		System.out.println("--Created the sessionFactory -----");
+
+		return sessionFactory;
+
+	}
+	
+	@Bean
+	public HibernateTransactionManager getHibernateTransactionManager(SessionFactory sessionFactory)
+	{
+		System.out.println("--Created the TranactionManager -----");
+		return new HibernateTransactionManager(sessionFactory);
+	}*/
+	@Bean(name="sessionFactory")
+	public SessionFactory getSessionFactory()
+	{
+		Properties hibernateProp=new Properties();
+		hibernateProp.put("hibernate.hbmddl2.auto", "update");
+		hibernateProp.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
+		
+		LocalSessionFactoryBuilder factoryBuilder=new LocalSessionFactoryBuilder(getDataSource());
+		factoryBuilder.addProperties(hibernateProp);
+		
+		factoryBuilder.addAnnotatedClass(Blog.class);
+		
+		SessionFactory sessionFactory=factoryBuilder.buildSessionFactory();
+		System.out.println("--Created the sessionFactory -----");
+		return sessionFactory;
+	}
+	
+	@Bean
+	public HibernateTransactionManager getHibernateTransactionManager(SessionFactory sessionFactory)
+	{
+		System.out.println("--Created the TranactionManager -----");
+		return new HibernateTransactionManager(sessionFactory);
+	}
+}
