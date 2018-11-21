@@ -14,6 +14,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.coll.models.Blog;
+import com.coll.models.BlogComment;
 
 @Configuration
 @EnableTransactionManagement
@@ -28,7 +29,7 @@ public class DBConfiguration
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
 		dataSource.setUsername("COLLABDB1");
-		dataSource.setPassword("password");
+		dataSource.setPassword("manali");
 		System.out.println("--Created the DataSource -----");
 		return dataSource;
 	}
@@ -44,6 +45,7 @@ public class DBConfiguration
 		factoryBuilder.addProperties(hibernateProp);
 		
 		factoryBuilder.addAnnotatedClass(Blog.class);
+		factoryBuilder.addAnnotatedClass(BlogComment.class);
 		
 		SessionFactory sessionFactory=factoryBuilder.buildSessionFactory();
 		System.out.println("--Created the sessionFactory -----");

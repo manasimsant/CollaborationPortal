@@ -2,9 +2,9 @@ package com.coll.dao;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -59,9 +59,8 @@ public class BlogDAOImpl implements BlogDAO {
 	@Override
 	public List<Blog> listBlogs() {
 		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("from Blog");
+		Query query = session.createQuery("from * Blog");
 		List<Blog> listBlogs = query.list();
-		session.close();
 		return listBlogs;
 	}
 
