@@ -1,6 +1,7 @@
 package com.coll.models;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +17,7 @@ public class Blog {
 	int blogid;
 	String blogname;
 	String blogdesc;
-	Date date;
+	Date createDate;
 	String username;
 	String status;
 	int likes;
@@ -47,11 +48,11 @@ public class Blog {
 	}
 
 	public Date getDate() {
-		return date;
+		return createDate;
 	}
 
 	public void setDate(Date date) {
-		this.date = date;
+		this.createDate = date;
 	}
 
 	public String getUsername() {

@@ -16,29 +16,29 @@ public class ForumComment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "forumcommentidseq")
-	int forumcomment_id;
-	String forum_name;
-	String forum_desc;
+	int forumcommentid;
+	String forumname;
+	String forumdesc;
 	Date createDate;
 	String loginname;
 	String status;
 	public int getForumcomment_id() {
-		return forumcomment_id;
+		return forumcommentid;
 	}
 	public void setForumcomment_id(int forumcomment_id) {
-		this.forumcomment_id = forumcomment_id;
+		this.forumcommentid = forumcomment_id;
 	}
 	public String getForum_name() {
-		return forum_name;
+		return forumname;
 	}
 	public void setForum_name(String forum_name) {
-		this.forum_name = forum_name;
+		this.forumname = forum_name;
 	}
 	public String getForum_desc() {
-		return forum_desc;
+		return forumdesc;
 	}
 	public void setForum_desc(String forum_desc) {
-		this.forum_desc = forum_desc;
+		this.forumdesc = forum_desc;
 	}
 	public Date getCreateDate() {
 		return createDate;

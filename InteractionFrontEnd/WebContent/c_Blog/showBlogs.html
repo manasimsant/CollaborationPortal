@@ -1,0 +1,26 @@
+<div class="container" ng-controller="BlogController">
+
+
+<div ng-repeat="blog in blogdata">
+
+<div class="panel-group">
+    <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#content1">{{blog.blogname}}</a>
+        </h4>
+          {{blog.likes}}<input type="button" value="Likes" ng-click="incrementLikes(blog.blogid)"/>
+          {{blog.dislikes}} 
+      </div>
+
+      <div id="content1" class="panel-collapse collapse">
+        <div class="panel-body">{{blog.blogdesc}}</div>
+      </div>
+
+    </div>
+  </div>
+  
+</div>
+
+</div>

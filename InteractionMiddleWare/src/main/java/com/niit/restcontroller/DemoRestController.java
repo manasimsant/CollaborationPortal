@@ -7,13 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class DemoRestController {
-
 	@GetMapping("/demo")
 	public ResponseEntity<String> demoImpl() {
-
-		System.out.println("----Demo Restful API");
-		return new ResponseEntity("Welcome to rest controller", HttpStatus.OK);
-
+		System.out.println("--- Demo Restful API ---");
+		return new ResponseEntity<String>("Welcome to Rest Controller", HttpStatus.OK);
 	}
-
 }

@@ -28,8 +28,8 @@ public class DBConfiguration
 		DriverManagerDataSource dataSource=new DriverManagerDataSource();
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
-		dataSource.setUsername("COLLABDB1");
-		dataSource.setPassword("manali");
+		dataSource.setUsername("COLLABDBDATABASE");
+		dataSource.setPassword("manasi");
 		System.out.println("--Created the DataSource -----");
 		return dataSource;
 	}
@@ -38,8 +38,10 @@ public class DBConfiguration
 	public SessionFactory getSessionFactory()
 	{
 		Properties hibernateProp=new Properties();
-		hibernateProp.put("hibernate.hbmddl2.auto", "update");
 		hibernateProp.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
+		hibernateProp.put("hibernate.hbmddl2.auto", "update");
+		hibernateProp.put("hibernate.hbmddl2.auto", "create");
+	
 		
 		LocalSessionFactoryBuilder factoryBuilder=new LocalSessionFactoryBuilder(getDataSource());
 		factoryBuilder.addProperties(hibernateProp);
@@ -52,7 +54,7 @@ public class DBConfiguration
 		return sessionFactory;
 	}
 	
-	@Bean
+	@Bean(name="txManager")
 	public HibernateTransactionManager getHibernateTransactionManager(SessionFactory sessionFactory)
 	{
 		System.out.println("--Created the TranactionManager -----");
