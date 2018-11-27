@@ -23,7 +23,7 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 	public boolean addComment(BlogComment comment) {
 		try {
 
-			sessionFactory.getCurrentSession().save(comment);
+			sessionFactory.getCurrentSession().saveOrUpdate(comment);
 			return true;
 		} catch (Exception e) {
 			return false;

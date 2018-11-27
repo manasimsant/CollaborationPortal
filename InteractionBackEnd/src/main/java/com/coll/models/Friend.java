@@ -7,24 +7,26 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
-@Table
-@SequenceGenerator(name = "myfriendidseq", sequenceName = "friendidseq")
+@Table(name="friend")
+@SequenceGenerator(name = "friendidseq", sequenceName = "friendidseq")
 public class Friend {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "myfriendidseq")
-	int friendId;
-
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "friendidseq")
+	int friendid;
 	String loginname;
 	String friendloginname;
 	String status;
 
 	public int getFriendId() {
-		return friendId;
+		return friendid;
 	}
 
 	public void setFriendId(int friendId) {
-		this.friendId = friendId;
+		this.friendid = friendId;
 	}
 
 	public String getLoginname() {

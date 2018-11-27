@@ -7,9 +7,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.coll.models.Blog;
-
+@Transactional
 @Repository("blogDAO")
 public class BlogDAOImpl implements BlogDAO {
 	
@@ -21,7 +22,7 @@ public class BlogDAOImpl implements BlogDAO {
 	{
 		try
 		{
-			sessionFactory.getCurrentSession().save(blog);
+			sessionFactory.getCurrentSession().saveOrUpdate(blog);
 			return true;
 		}
 		catch(Exception e)

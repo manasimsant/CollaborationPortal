@@ -2,20 +2,27 @@ package com.coll.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
-@Table
+@Table(name = "UserDetails")
+@SequenceGenerator(name = "useridseq", sequenceName = "useridseq", allocationSize = 1)
 public class User {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "useridseq")
+	int userid;
 	String username;
 	String password;
 	String loginname;
 	String email;
-	int mobileno;
+	String mobileno;
 	String address;
 	String role;
 
@@ -51,11 +58,11 @@ public class User {
 		this.email = email;
 	}
 
-	public int getMobileno() {
+	public int getMobileno(int mobileno) {
 		return mobileno;
 	}
 
-	public void setMobileno(int mobileno) {
+	public void setMobileno(String mobileno) {
 		this.mobileno = mobileno;
 	}
 
@@ -75,4 +82,11 @@ public class User {
 		this.role = role;
 	}
 
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
 }

@@ -7,24 +7,39 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.coll.models.Job;
 
-@Repository
+@Transactional
+@Repository("jobDAO")
 public class JobDAOImpl implements JobDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
 
+	@Autowired
+	public JobDAOImpl(SessionFactory sf) {
+		this.sessionFactory = sf;
+	}
+
 	@Override
-	public boolean postJob(Job job) {
+	public boolean addJob(Job job) {
 		try {
-			sessionFactory.getCurrentSession().save(job);
+			sessionFactory.getCurrentSession().update(job);
 			return true;
+
 		} catch (Exception e) {
-			System.out.println(e);
 			return false;
 		}
+	}
+
+	@Override
+	public List<Job> getAllJobs() {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Job");// HQL -> SQL
+		List<Job> jobs = query.list();
+		return jobs;
 	}
 
 	@Override
@@ -33,24 +48,18 @@ public class JobDAOImpl implements JobDAO {
 			sessionFactory.getCurrentSession().update(job);
 			return true;
 		} catch (Exception e) {
-			System.out.println(e);
 			return false;
 		}
 	}
 
 	@Override
-	public List<Job> listJobDetails() {
-		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("from Job");
-		List<Job> listJobs = query.list();
-		return listJobs;
-	}
-
-	@Override
-	public Job getJob(int jobId) {
-		Session session = sessionFactory.openSession();
-		Job job = (Job) session.get(Job.class, jobId);
-		return job;
+	public boolean deleteJob(Job jobid) {
+		try {
+			sessionFactory.getCurrentSession().delete(jobid);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 }

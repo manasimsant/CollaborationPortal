@@ -3,10 +3,12 @@
 <title>Interaction-Main Page</title>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
 
 <script src="RouteConfig.js"></script>
-<script src="c_blog/BlogController.js"></script>
+<script src="c_Blog/BlogController.js"></script>
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -18,31 +20,61 @@
 
 </head>
 <body ng-app="myApp">
-
-
 <div class="container-fluid">
 <nav class="navbar navbar-inverse">
   <div class="navbar-header">
   <a class="navbar-brand" href="#">Collaboration</a>
-  </nav>
   </div>
-  <div>
-   <nav class="navbar navbar-inverse">
-  <a class="navbar-brand" href="home">Home</a>
-  <a class="navbar-brand" href="register">Register</a>
-  <a class="navbar-brand" href="login">Login</a>
-  <a class="navbar-brand" href="profile">ProfilePicture</a>
-  <a class="navbar-brand" href="job">Job</a>
-  <a class="dropdown-toggle" data-toggle="dropdown" href="#">BLOG <span class="caret"></span></a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a class="nav-link" href="#" ng-show="currentUser==undefined">Home</a>
+        <a class="nav-link" href="/userhome" ng-hide="currentUser==undefined">Home</a>
+      </li>
+      <li>
+        <a class="nav-link" href="/login" ng-show="currentUser==undefined">Login</a>
+      </li>
+      <li>
+        <a class="nav-link" href="/register" ng-show="currentUser==undefined">Register</a>
+      </li>
+      <li>
+        <a class="nav-link" href="/profilepicture" ng-hide="currentUser==undefined">Profile Picture</a>
+      </li>
+      <li>
+        <a class="nav-link" href="/chat" ng-hide="currentUser==undefined">Chat</a>
+      </li>
+      <li class="dropdown" ng-hide="currentUser==undefined">
+      	<a class="dropdown-toggle" data-toggle="dropdown" href="#">BLOG <span class="caret"></span></a>
       		<ul class="dropdown-menu">
-        		<li><a class="navbar-brand" href="#!AddBlog">Add Blog</a></li>
-        		<!-- <li><a class="nav-link" href="#/AdminBlog">Manage Blog</a></li> -->
-        		<li><a class="navbar-brand" href="#!showBlogs">Show Blog</a></li>
+        		<li><a class="nav-link" href="/AddBlog">Add Blog</a></li>
+        		<li><a class="nav-link" href="/AdminBlog">Manage Blog</a></li>
+        		<li><a class="nav-link" href="/showBlogs">Show Blog</a></li>
         	</ul>
       </li>
-  <a class="navbar-brand" href="friend">Friend</a>
-  </nav>
-  </div>
-  </body>
-  </html>
-  
+      <li>
+        <a class="nav-link" href="#/job" ng-hide="currentUser==undefined">Job</a>
+      </li>   
+      <li class="dropdown" ng-hide="currentUser==undefined">
+      	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Friend <span class="caret"></span></a>
+      		<ul class="dropdown-menu">
+        		<li><a class="nav-link" href="#/showfriendlist">Friend List</a></li>
+        		<li><a class="nav-link" href="#/pendingrequest">Pending Request</a></li>
+        		<li><a class="nav-link" href="#/suggestionlist">Suggestion List</a></li>
+        	</ul>
+      </li> 
+    </ul>  
+    
+    <div class="nav navbar-nav navbar-right" ng-hide="currentUser==undefined">
+    	<!-- <img src="http://localhost:8083/InteractionMiddleware/getImage/{{currentUser.loginname}}" width="20" height="20"/>
+    	<font color="white" face="calibri" size="2">
+    		Welcome {{currentUser.username}}
+    	</font> -->
+    	<form ng-controller="UserController">
+    		<input type="button" value="Logout" class="btn btn-warning" ng-click="logout()"/>
+    	</form>
+    </div>
+    LOGOUT
+</nav>
+</div>
+<div ng-view></div>
+</body>
+</html>

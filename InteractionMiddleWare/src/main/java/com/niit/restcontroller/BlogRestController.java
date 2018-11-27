@@ -92,13 +92,13 @@ public class BlogRestController {
 		}
 	}
 	
-	@GetMapping("/incrementDisLikes/{blogid}")
+	@GetMapping("/incrementDislikes/{blogid}")
 	public ResponseEntity<String> decrementLikes(@PathVariable("blogid") int blogid)
 	{
 		
 		if(blogDAO.incrementDisLikes(blogid))
 		{
-			return new ResponseEntity<String>("Increment DisLike",HttpStatus.OK);
+			return new ResponseEntity<String>("Increment Dislikes",HttpStatus.OK);
 		}
 		else
 		{

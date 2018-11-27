@@ -9,92 +9,97 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Component
 @Entity
 @Table
-@SequenceGenerator(name = "jobidseq", sequenceName = "myjobseq")
+@SequenceGenerator(name = "jobidseq", sequenceName = "jobidseq", allocationSize = 1)
 public class Job {
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jobidseq")
-	int jobid;
-	String job_name;
-	String job_desc;
-	Date posted_date;
-	Date last_date;
-	int salary;
-	String company_name;
-	String designation;
-	String status;
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="jobidseq")
+	int id;
+	String jobTitle;
+	String jobDescription;
+	String skillsRequired;
+	String salary;
+	String location;
+	String companyName;
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="dd-mm-yyyy")
+	Date postedOn;
+	String yrsOfExp;
 
-	public int getJobid() {
-		return jobid;
+	public int getId() {
+		return id;
 	}
 
-	public void setJobid(int jobid) {
-		this.jobid = jobid;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getJob_name() {
-		return job_name;
+	public String getJobTitle() {
+		return jobTitle;
 	}
 
-	public void setJob_name(String job_name) {
-		this.job_name = job_name;
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
 	}
 
-	public String getJob_desc() {
-		return job_desc;
+	public String getJobDescription() {
+		return jobDescription;
 	}
 
-	public void setJob_desc(String job_desc) {
-		this.job_desc = job_desc;
+	public void setJobDescription(String jobDescription) {
+		this.jobDescription = jobDescription;
 	}
 
-	public Date getPosted_date() {
-		return posted_date;
+	public String getSkillsRequired() {
+		return skillsRequired;
 	}
 
-	public void setPosted_date(Date posted_date) {
-		this.posted_date = posted_date;
+	public void setSkillsRequired(String skillsRequired) {
+		this.skillsRequired = skillsRequired;
 	}
 
-	public Date getLast_date() {
-		return last_date;
-	}
-
-	public void setLast_date(Date last_date) {
-		this.last_date = last_date;
-	}
-
-	public int getSalary() {
+	public String getSalary() {
 		return salary;
 	}
 
-	public void setSalary(int salary) {
+	public void setSalary(String salary) {
 		this.salary = salary;
 	}
 
-	public String getCompany_name() {
-		return company_name;
+	public String getLocation() {
+		return location;
 	}
 
-	public void setCompany_name(String company_name) {
-		this.company_name = company_name;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
-	public String getDesignation() {
-		return designation;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public void setDesignation(String designation) {
-		this.designation = designation;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
-	public String getStatus() {
-		return status;
+	public Date getPostedOn() {
+		return postedOn;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPostedOn(Date postedOn) {
+		this.postedOn = postedOn;
+	}
+
+	public String getYrsOfExp() {
+		return yrsOfExp;
+	}
+
+	public void setYrsOfExp(String yrsOfExp) {
+		this.yrsOfExp = yrsOfExp;
 	}
 }

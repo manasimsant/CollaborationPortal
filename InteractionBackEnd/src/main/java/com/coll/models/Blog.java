@@ -5,18 +5,27 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Component
 @Entity
 @Table(name="BlogTable")
+@SequenceGenerator(name="blogIdSeq",sequenceName="blog_id_seq",allocationSize=1)
 public class Blog {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="blogIdSeq")
 	int blogid;
 	String blogname;
 	String blogdesc;
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="dd-mm-yyyy")
 	Date createDate;
 	String username;
 	String status;

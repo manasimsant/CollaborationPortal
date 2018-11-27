@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.coll.models.Forum;
 
-@Repository
 @Transactional
+@Repository("forumDAO")
 public class ForumDAOImpl implements ForumDAO {
 
 	@Autowired
@@ -39,9 +39,9 @@ public class ForumDAOImpl implements ForumDAO {
 	}
 
 	@Override
-	public boolean deleteForum(Forum forum) {
+	public boolean deleteForum(Forum forumid) {
 		try {
-			sessionFactory.getCurrentSession().save(forum);
+			sessionFactory.getCurrentSession().save(forumid);
 			return true;
 		} catch (Exception e) {
 			return false;

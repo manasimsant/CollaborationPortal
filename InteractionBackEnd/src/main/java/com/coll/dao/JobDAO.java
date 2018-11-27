@@ -5,12 +5,11 @@ import java.util.List;
 import com.coll.models.Job;
 
 public interface JobDAO {
-	public boolean postJob(Job job);
 
+	public boolean addJob(Job job);
+
+	public List<Job> getAllJobs();
 	public boolean updateJob(Job job);
-
-	public List<Job> listJobDetails();
-
-	public Job getJob(int jobid);
+	public boolean deleteJob(Job jobid);
 
 }

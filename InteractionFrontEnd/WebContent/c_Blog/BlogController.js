@@ -7,7 +7,7 @@ myApp.controller("BlogController",function($scope,$http,$location,$route)
 	function listBlog()
 	{
 		console.log('List Blog Method');
-		$http.get('http://localhost:8041/InteractionMiddleware/showBlogs')
+		$http.get('http://localhost:8041/InteractionMiddleware/showBlogs',$scope.blog)
 		.then(function(response)
 				{
 				console.log(response.data);

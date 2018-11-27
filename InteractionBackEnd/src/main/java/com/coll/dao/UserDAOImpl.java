@@ -14,6 +14,7 @@ import com.coll.models.User;
 @Repository("userDAO")
 @Transactional
 public class UserDAOImpl implements UserDAO {
+	
 	@Autowired
 	SessionFactory sessionFactory;
 
@@ -57,7 +58,6 @@ public class UserDAOImpl implements UserDAO {
 			User user = listUserDetail.get(0);
 			return user;
 		}
-
 		return null;
 	}
 

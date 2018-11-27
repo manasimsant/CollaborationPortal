@@ -39,7 +39,7 @@ public class BlogDAOTest {
 		blog.setUsername("Manasi");
 		blog.setStatus("NA");
 
-		assertEquals("Problem in adding blog", blogDAO.addBlog(blog));
+		assertEquals("Problem in adding blog",true, blogDAO.addBlog(blog));
 	}
 
 	@Ignore
@@ -54,7 +54,7 @@ public class BlogDAOTest {
 	@Test
 	public void updateBlogTest() {
 		Blog blog = blogDAO.getBlog(12);
-		blog.setBlogname("Vanilla Java Blog");
+		blog.setBlogname("Java Blog");
 		assertTrue("Problem in Updating the Blog", blogDAO.updateBlog(blog));
 	}
 
