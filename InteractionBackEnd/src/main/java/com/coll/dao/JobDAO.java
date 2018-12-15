@@ -11,5 +11,6 @@ public interface JobDAO {
 	public List<Job> getAllJobs();
 	public boolean updateJob(Job job);
 	public boolean deleteJob(Job jobid);
+	public Job getJob(int jobid);
 
 }

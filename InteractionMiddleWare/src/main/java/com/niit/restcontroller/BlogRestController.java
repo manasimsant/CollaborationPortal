@@ -20,89 +20,79 @@ public class BlogRestController {
 
 	@Autowired
 	BlogDAO blogDAO;
-	
-	@GetMapping("/showBlogs")
-	public ResponseEntity<List<Blog>> showAllBlogs()
-	{
-		List<Blog> listBlogs=blogDAO.listBlogs();
-		
-		if(listBlogs.size()>0)
-			return new ResponseEntity<List<Blog>>(listBlogs,HttpStatus.OK);
+
+	/*public class DemoRestController {
+		@GetMapping("/")
+		public ResponseEntity<String> demoImpl() {
+			System.out.println("--- Demo Restful API ---");
+			return new ResponseEntity<String>("Welcome to Rest Controller", HttpStatus.OK);
+		}
+	}*/
+		//---------------------------show all blogs--------------
+	@GetMapping(value = "/showBlogs")
+	public ResponseEntity<List<Blog>> showAllBlogs() {
+		List<Blog> listBlogs = blogDAO.listBlogs();
+
+		if (listBlogs.size() > 0)
+			return new ResponseEntity<List<Blog>>(listBlogs, HttpStatus.OK);
 		else
-			return new ResponseEntity<List<Blog>>(listBlogs,HttpStatus.INTERNAL_SERVER_ERROR);
-		
+			return new ResponseEntity<List<Blog>>(listBlogs, HttpStatus.INTERNAL_SERVER_ERROR);
+
 	}
-	@PostMapping("/AddBlog")
-	public ResponseEntity<String> addBlog(@RequestBody Blog blog)
-	{
+	//-------------------------------------Adding blogs-------------------------------------
+
+	@PostMapping(value = "/AddBlog")
+	public ResponseEntity<String> addBlog(@RequestBody Blog blog) {
 		blog.setDate(new Date());
-		blog.setLikes(0);
-		blog.setDislikes(0);
-		blog.setUsername("sudhir");
+		blog.setUsername("shubham");
 		blog.setStatus("NA");
-		
-		if(blogDAO.addBlog(blog))
-			return new ResponseEntity<String>("Blog Added",HttpStatus.OK);
+		if (blogDAO.addBlog(blog))
+			return new ResponseEntity<String>("Blog Added", HttpStatus.OK);
 		else
-			return new ResponseEntity<String>("Failure",HttpStatus.INTERNAL_SERVER_ERROR);
-		
+			return new ResponseEntity<String>("Failure", HttpStatus.INTERNAL_SERVER_ERROR);
+
 	}
-	
-	@GetMapping("/approveBlog/{blogid}")
-	public ResponseEntity<String> approveBlog(@PathVariable("blogid") int blogid)
-	{
-		Blog blog=(Blog)blogDAO.getBlog(blogid);
-		
-		if(blogDAO.approveBlog(blog))
-		{
-			return new ResponseEntity<String>("Approved",HttpStatus.OK);
-		}
-		else
-		{
-			return new ResponseEntity<String>("Failure",HttpStatus.INTERNAL_SERVER_ERROR);
+	//--------------------------------Approving blogs-----------------------------------
+
+	@GetMapping(value = "/approveBlog/{blogid}")
+	public ResponseEntity<String> approveBlog(@PathVariable("blogid") int blogid) {
+		Blog blog = (Blog) blogDAO.getBlog(blogid);
+
+		if (blogDAO.approveBlog(blog)) {
+			return new ResponseEntity<String>("Approved", HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>("Failure", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
-	@GetMapping("/rejectBlog/{blogid}")
-	public ResponseEntity<String> rejectBlog(@PathVariable("blogid") int blogid)
-	{
-		Blog blog=(Blog)blogDAO.getBlog(blogid);
-		
-		if(blogDAO.rejectBlog(blog))
-		{
-			return new ResponseEntity<String>("Reject",HttpStatus.OK);
-		}
-		else
-		{
-			return new ResponseEntity<String>("Failure",HttpStatus.INTERNAL_SERVER_ERROR);
+//-----------------------rejecting blog------------------------------------------------------
+	@GetMapping(value = "/rejectBlog/{blogid}")
+	public ResponseEntity<String> rejectBlog(@PathVariable("blogid") int blogid) {
+		Blog blog = (Blog) blogDAO.getBlog(blogid);
+
+		if (blogDAO.rejectBlog(blog)) {
+			return new ResponseEntity<String>("Reject", HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>("Failure", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
-	@GetMapping("/incrementLikes/{blogid}")
-	public ResponseEntity<String> incrementLikes(@PathVariable("blogid") int blogid)
-	{
-		
-		if(blogDAO.incrementLikes(blogid))
-		{
-			return new ResponseEntity<String>("Incremented",HttpStatus.OK);
-		}
-		else
-		{
-			return new ResponseEntity<String>("Failure",HttpStatus.INTERNAL_SERVER_ERROR);
+//--------------------------------increment likes------------------------------------------
+	@GetMapping(value = "/incrementLikes/{blogid}")
+	public ResponseEntity<String> incrementLikes(@PathVariable("blogid") int blogid) {
+
+		if (blogDAO.incrementLikes(blogid)) {
+			return new ResponseEntity<String>("Incremented", HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>("Failure", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
-	@GetMapping("/incrementDislikes/{blogid}")
-	public ResponseEntity<String> decrementLikes(@PathVariable("blogid") int blogid)
-	{
-		
-		if(blogDAO.incrementDisLikes(blogid))
-		{
-			return new ResponseEntity<String>("Increment Dislikes",HttpStatus.OK);
-		}
-		else
-		{
-			return new ResponseEntity<String>("Failure",HttpStatus.INTERNAL_SERVER_ERROR);
+//----------------------------------increment dislikes-------------------------------------
+	@GetMapping(value = "/incrementDislikes/{blogid}")
+	public ResponseEntity<String> decrementLikes(@PathVariable("blogid") int blogid) {
+
+		if (blogDAO.incrementDislikes(blogid)) {
+			return new ResponseEntity<String>("Increment Dislikes", HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>("Failure", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 

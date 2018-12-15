@@ -1,5 +1,6 @@
 package com.coll.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -26,7 +27,7 @@ public class JobDAOImpl implements JobDAO {
 	@Override
 	public boolean addJob(Job job) {
 		try {
-			sessionFactory.getCurrentSession().update(job);
+			sessionFactory.getCurrentSession().saveOrUpdate(job);
 			return true;
 
 		} catch (Exception e) {
@@ -36,10 +37,16 @@ public class JobDAOImpl implements JobDAO {
 
 	@Override
 	public List<Job> getAllJobs() {
-		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from Job");// HQL -> SQL
-		List<Job> jobs = query.list();
-		return jobs;
+		try {
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			List<Job> jobList = new ArrayList<Job>();
+			Query query = session.createQuery("FROM Job");
+			jobList = query.list();
+			return jobList;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override
@@ -62,4 +69,13 @@ public class JobDAOImpl implements JobDAO {
 		}
 	}
 
+	public Job getJob(int jobid) {
+		try {
+			Session session = sessionFactory.openSession();
+			Job job = session.get(Job.class, jobid);
+			return job;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

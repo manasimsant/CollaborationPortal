@@ -1,0 +1,17 @@
+<html>
+<head>
+
+</head>
+
+<div class="container" ng-controller="FriendController">
+	<table colspam="2" width="50%" align="center" cellpadding="20">
+
+		<tr>
+			<ng-repeat ="Friends in pendingfriendlist">
+			<td>{{friend.loginname}}</td>
+
+			<td><input type="button" value="Unfriend" class="btn btn-danger"
+				ng-click="unfriend(friend.friendid)" /></td>
+			<td><input type="button" value="Accept" class="btn btn-succcess"
+				ng-click="accept(friend.friendid)" /></td>
+	</table>

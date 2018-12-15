@@ -1,0 +1,40 @@
+<style>
+label {
+	color: white;
+}
+
+th {
+	color: black;
+}
+</style>
+<div-class ="container" ng-controller="BlogController">
+
+<table id="table2" class="table">
+	<tr>
+		<th>Blog Name</th>
+		<th>Blog Content</th>
+		<th>Blog Status</th>
+		<th>Likes</th>
+		<th>Dislikes</th>
+		<th>Likes/Dislikes</th>
+		<th>Delete</th>
+	</tr>
+	<tr ng-repeat="Blog in BlogData">
+		<td>{{blog.blogname}}</td>
+		<td>{{blog.blogdesc}}</td>
+		<td>{{blog.status}}</td>
+		<td>{{blog.likes}}</td>
+		<td>{{blog.dislikes}}</td>
+		<td><input value="Like" class="btn btn-success"
+			ng-click="incrementLikes(blog.blogid)" type="submit" /><input
+			value="Dislike" class="btn btn-danger" ng=click=
+			"incrementDislikes(blog.blogid)" type="submit" />
+		<td><input value="Approve" class="btn btn-success"
+			ng-click="approve(blog.blogid)" type="submit" /><input
+			value="Disapprove" class="btn btn-danger"
+			ng-click="disapprove(blog.blogid)" type="submit" />
+		<td><input value="Delete" class="btn btn-danger"
+			ng-click="delete(blog.blogid)" type="submit" /></td>
+	</tr>
+</table>
+</div-class>

@@ -1,5 +1,6 @@
 package com.coll.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -18,6 +19,7 @@ public class ForumDAOImpl implements ForumDAO {
 	@Autowired
 	SessionFactory sessionFactory;
 
+	
 	@Override
 	public boolean addForum(Forum forum) {
 		try {
@@ -31,7 +33,7 @@ public class ForumDAOImpl implements ForumDAO {
 	@Override
 	public boolean updateForum(Forum forum) {
 		try {
-			sessionFactory.getCurrentSession().save(forum);
+			sessionFactory.getCurrentSession().update(forum);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -41,7 +43,7 @@ public class ForumDAOImpl implements ForumDAO {
 	@Override
 	public boolean deleteForum(Forum forumid) {
 		try {
-			sessionFactory.getCurrentSession().save(forumid);
+			sessionFactory.getCurrentSession().delete(forumid);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -58,9 +60,10 @@ public class ForumDAOImpl implements ForumDAO {
 
 	@Override
 	public List<Forum> listForum() {
-		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("from * Forum");
-		List<Forum> listForum = query.list();
+
+		Query query = sessionFactory.getCurrentSession().createQuery("from Forum");
+		List<Forum> listForum = new ArrayList<Forum>();
+		listForum = query.list();
 		return listForum;
 	}
 }

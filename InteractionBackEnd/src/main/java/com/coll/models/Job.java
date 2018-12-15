@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Component
 @Entity
-@Table
+@Table(name="Job")
 @SequenceGenerator(name = "jobidseq", sequenceName = "jobidseq", allocationSize = 1)
 public class Job {
 	@Id
@@ -24,7 +24,7 @@ public class Job {
 	String jobTitle;
 	String jobDescription;
 	String skillsRequired;
-	String salary;
+	int salary;
 	String location;
 	String companyName;
 	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="dd-mm-yyyy")
@@ -63,11 +63,11 @@ public class Job {
 		this.skillsRequired = skillsRequired;
 	}
 
-	public String getSalary() {
+	public int getSalary() {
 		return salary;
 	}
 
-	public void setSalary(String salary) {
+	public void setSalary(int salary) {
 		this.salary = salary;
 	}
 

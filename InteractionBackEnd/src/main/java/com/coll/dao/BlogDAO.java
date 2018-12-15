@@ -18,7 +18,7 @@ public interface BlogDAO {
 
 	public boolean incrementLikes(int blogid);
 
-	public boolean incrementDisLikes(int blogid);
+	public boolean incrementDislikes(int blogid);
 
 	public boolean approveBlog(Blog blog);
 

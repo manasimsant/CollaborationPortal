@@ -1,0 +1,21 @@
+<html>
+<head>
+
+</head>
+
+<body ng-app="myApp">
+
+	<div class="container" ng-controller="FriendController">
+		WelCome
+		<table width="50" align="center" cellpadding="20">
+			<tr ng-repeat="friend in suggested friend list">
+				<td>{{friend.username}}</td>
+				<td><input type="submit" value="Send Request"
+					class="btn btn-primary"
+					ng-click="sendfriendrequest()" /></td>
+			</tr>
+		</table>
+
+	</div>
+</body>
+</html>

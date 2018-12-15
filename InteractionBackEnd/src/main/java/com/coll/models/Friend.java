@@ -21,12 +21,12 @@ public class Friend {
 	String friendloginname;
 	String status;
 
-	public int getFriendId() {
+	public int getFriendid() {
 		return friendid;
 	}
 
-	public void setFriendId(int friendId) {
-		this.friendid = friendId;
+	public void setFriendid(int friendid) {
+		this.friendid = friendid;
 	}
 
 	public String getLoginname() {

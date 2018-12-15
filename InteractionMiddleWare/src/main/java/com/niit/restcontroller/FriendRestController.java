@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,18 +23,18 @@ public class FriendRestController {
 	@Autowired
 	FriendDAO friendDAO;
 
-	@PostMapping(value = "/sendfriendrequest")
+	@PutMapping(value = "/sendfriendrequest")
 	public ResponseEntity<String> sendFriendRequest(@RequestBody Friend friend) {
 		if (friendDAO.sendFriendRequest(friend)) {
-			return new ResponseEntity<String>("Friend request sent..!!", HttpStatus.OK);
+			return new ResponseEntity<String>("Friend request sent", HttpStatus.OK);
 		} else {
 			return new ResponseEntity<String>("Failure to send friend request", HttpStatus.INTERNAL_SERVER_ERROR);
 		}   
 	}
 
-	@GetMapping(value = "/deleteFriendRequest/{friendid}")
-	public ResponseEntity<String> deleteFriendRequest(@PathVariable("friendid") int friendId) {
-		if (friendDAO.deleteFriendRequest(friendId)) {
+	@GetMapping(value = "/deletefriendrequest/{friendid}")
+	public ResponseEntity<String> deleteFriendRequest(@PathVariable("friendid") int friendid) {
+		if (friendDAO.deleteFriendRequest(friendid)) {
 			return new ResponseEntity<String>("Friend request deleted..!!", HttpStatus.OK);
 		} else {
 			return new ResponseEntity<String>("Failure to delete friend request", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -42,8 +42,8 @@ public class FriendRestController {
 	}
 
 	@GetMapping(value = "/acceptfriendrequest")
-	public ResponseEntity<String> acceptFriendRequest(@PathVariable("friendid") int friendId) {
-		if (friendDAO.acceptFriendRequest(friendId)) {
+	public ResponseEntity<String> acceptFriendRequest(@PathVariable("friendid") int friendid) {
+		if (friendDAO.acceptFriendRequest(friendid)) {
 			return new ResponseEntity<String>("Friend request accepted..!!", HttpStatus.OK);
 		} else {
 			return new ResponseEntity<String>("Failure to accept friend request", HttpStatus.INTERNAL_SERVER_ERROR);

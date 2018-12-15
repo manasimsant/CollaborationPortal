@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.coll.models.Blog;
+
 @Transactional
 @Repository("blogDAO")
 public class BlogDAOImpl implements BlogDAO {
@@ -70,20 +71,20 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	@Override
-	public Blog getBlog(int blogId) 
+	public Blog getBlog(int blogid) 
 	{
 		Session session=sessionFactory.openSession();
-		Blog blog=(Blog)session.get(Blog.class,blogId);
+		Blog blog=(Blog)session.get(Blog.class,blogid);
 		session.close();
 		return blog;
 	}
 
 	@Override
-	public boolean incrementLikes(int blogId)
+	public boolean incrementLikes(int blogid)
 	{
 		try
 		{
-			Blog blog =this.getBlog(blogId);
+			Blog blog =this.getBlog(blogid);
 			blog.setLikes(blog.getLikes()+1);
 			sessionFactory.getCurrentSession().update(blog);
 			return true;
@@ -95,10 +96,10 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	@Override
-	public boolean incrementDisLikes(int blogId) {
+	public boolean incrementDislikes(int blogid) {
 		try
 		{
-			Blog blog =this.getBlog(blogId);
+			Blog blog =this.getBlog(blogid);
 			blog.setDislikes(blog.getDislikes()+1);
 			sessionFactory.getCurrentSession().update(blog);
 			return true;

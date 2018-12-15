@@ -1,7 +1,7 @@
 
 package com.coll.models;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Component
 @Entity
-@Table
-@SequenceGenerator(name = "forumidseq", sequenceName = "myforumseq")
+@Table(name="forumtable")
+@SequenceGenerator(name = "forumidseq", sequenceName = "forumidseq")
 public class Forum {
 	
 	@Id
@@ -21,7 +26,9 @@ public class Forum {
 	String forumname;
 	String forumdesc;
 	String username;
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="dd-mm-yyyy")
 	Date createforumdate;
+	
 	public int getForumid() {
 		return forumid;
 	}

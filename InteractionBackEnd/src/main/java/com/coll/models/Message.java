@@ -1,4 +1,4 @@
-package com.coll.models;
+/*package com.coll.models;
 
 public class Message {
 	private int id;
@@ -29,3 +29,4 @@ public class Message {
 	}
 
 }
+*/

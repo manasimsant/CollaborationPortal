@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.coll.models.User;
 
-@Repository("userDAO")
 @Transactional
+@Repository("userDAO")
 public class UserDAOImpl implements UserDAO {
 	
 	@Autowired
@@ -21,7 +21,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public boolean registerUser(User user) {
 		try {
-			sessionFactory.getCurrentSession().save(user);
+			sessionFactory.getCurrentSession().saveOrUpdate(user);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -52,10 +52,10 @@ public class UserDAOImpl implements UserDAO {
 		Query query = session.createQuery("from UserDetail where loginname=:myloginname and password=:mypassword");
 		query.setParameter("myloginname", loginname);
 		query.setParameter("mypassword", password);
-		List<User> listUserDetail = query.list();
+		List<User> listUser = query.list();
 
-		if (listUserDetail.size() > 0) {
-			User user = listUserDetail.get(0);
+		if (listUser.size() > 0) {
+			User user = listUser.get(0);
 			return user;
 		}
 		return null;

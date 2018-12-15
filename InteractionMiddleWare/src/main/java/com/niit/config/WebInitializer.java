@@ -2,14 +2,14 @@ package com.niit.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.coll.config.DBConfiguration;
+import com.coll.config.DBConfig;
 
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		System.out.println("----getRootConfig classes----");
-		return new Class[] {WebResolver.class, DBConfiguration.class};
+		return new Class[] {WebResolver.class, DBConfig.class};
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	@Override
 	protected String[] getServletMappings() {
 		System.out.println("-----getServletMappings----");
-		return null;
+		return new String[] { "/" };
 	}
 
 }

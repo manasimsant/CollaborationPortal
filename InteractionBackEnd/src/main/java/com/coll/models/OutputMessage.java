@@ -1,4 +1,4 @@
-package com.coll.models;
+/*package com.coll.models;
 
 import java.util.Date;
 
@@ -19,3 +19,4 @@ public class OutputMessage extends Message {
 	}
 
 }
+*/

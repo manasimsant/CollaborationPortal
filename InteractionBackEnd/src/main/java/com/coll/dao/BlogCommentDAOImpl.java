@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import com.coll.models.BlogComment;
 
-@Repository
 @Transactional
+@Repository("blogCommentDAO")
 public class BlogCommentDAOImpl implements BlogCommentDAO {
 
 	@Autowired
@@ -51,7 +51,7 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 	@Override
 	public List<BlogComment> listBlogComments(int blogid) {
 		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("from*Comment");
+		Query query=session.createQuery("from * BlogComment");
 		List<BlogComment> listBlogComments=query.list();
 		return listBlogComments;
 	}

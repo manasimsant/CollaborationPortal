@@ -1,0 +1,23 @@
+<div class="container" ng-controller="FriendController">
+	<table width="50%" align="center" cellpadding="20">
+
+		<tr ng-repeat="friend in friendList">
+
+			<td>
+				width="100" height="100"/> {{friend.friendloginname}}
+			</td>
+
+			<td ng-show="friend.friendloginname==currentUser.loginname">
+				<!-- 	<img src="<!-- http://localhost:8083/InteractionMiddleware/getImage/{{friend.loginname}} -->"
+				class="img-circle" width="100" height="100"/> -->
+				{{friend.loginname}}
+			</td>
+
+			<td><input type="button" value="Unfriend" class="btn btn-danger"
+				ng-click="unfriend(friend.friendid)" /></td>
+		</tr>
+	</table>
+
+
+
+</div>

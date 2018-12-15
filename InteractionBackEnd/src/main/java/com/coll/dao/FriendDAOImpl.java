@@ -69,7 +69,7 @@ public class FriendDAOImpl implements FriendDAO {
 	public boolean sendFriendRequest(Friend friend) {
 		try {
 			friend.setStatus("P");
-			sessionFactory.getCurrentSession().save(friend);
+			sessionFactory.getCurrentSession().saveOrUpdate(friend);
 			return true;
 		} catch (Exception e) {
 			return false;
