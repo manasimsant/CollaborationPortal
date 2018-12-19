@@ -15,7 +15,7 @@ public class WebResolver {
 	
 	@Bean
 	public InternalResourceViewResolver getViewResolver() {
-		System.out.println("view resolver bean creation");
+		System.out.println("-------------------view resolver bean creation----------------");
 		InternalResourceViewResolver iResolver = new InternalResourceViewResolver();
 		iResolver.setViewClass(JstlView.class);
 		iResolver.setPrefix("/WEB-INF/jsp");

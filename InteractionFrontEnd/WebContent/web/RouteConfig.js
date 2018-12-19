@@ -1,17 +1,17 @@
-/*var myApp = angular.module("myApp", [ 'ngRoute'], 'ngCookie');
+var myApp = angular.module("myApp", ['ngRoute']);
 myApp.config(function($routeProvider) {
 	alert("Route Provider");
 	$routeProvider.when("/", {
 		templateUrl : "index.html"
-	}).when("/addBlog", {
+	}).when('/addBlog', {
 		templateUrl : "web/c_Blog/AddBlog.html"
-	}).when("/AdminBlog", {
+	}).when('/AdminBlog', {
 		templateUrl : "web/c_Blog/AdminBlog.html"
-	}).when("/showBlogs", {
+	}).when('/showBlogs', {
 		templateUrl : "web/c_Blog/showBlogs.html"
-	}).when("/login", {
+	}).when('/login', {
 		templateUrl : "web/c_User/login.html"
-	}).when("/register", {
+	}).when('/register', {
 		templateUrl : "web/c_User/signup.html"
 	}).when("/userhome", {
 		templateUrl : "web/c_User/userhome.html"
@@ -31,7 +31,16 @@ myApp.config(function($routeProvider) {
 		templateUrl : "web/c_Forum/forum.html"
 	}).when("/AddForum", {
 		templateUrl : "web/c_Forum/ManageForum.html"
-	});
-
+	})
+.otherwise({templateUrl:'web/home.html'})
 });
-*/
+/*myApp.run(function($rootScope, $cookieStore) {
+	console.log('I am in run Function');
+
+	console.log($rootScope.currentUser);
+
+	if ($rootScope.currentUser == undefined) {
+		console.log($cookieStore.get('userDetails'));
+		$rootScope.currentUser = $cookieStore.get('userDetails');
+	}
+});*/

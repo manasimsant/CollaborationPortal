@@ -11,7 +11,7 @@
           <a data-toggle="collapse" href="#content1">{{blog.blogname}}</a>
         </h4>
           {{blog.likes}}<input type="button" value="Likes" ng-click="incrementLikes(blog.blogid)"/>
-          {{blog.dislikes}} 
+          {{blog.dislikes}} <input type="button" value="dislikes" ng-click="incrementDislikes(blog.blogid)"/>
       </div>
 
       <div id="content1" class="panel-collapse collapse">

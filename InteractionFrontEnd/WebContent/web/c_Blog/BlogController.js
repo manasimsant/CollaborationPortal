@@ -65,6 +65,7 @@ myApp.controller("BlogController", function($scope, $http, $location, $route) {
 		$http.get(
 				"http://localhost:8084/InteractionMiddleWare/incrementDislikes"
 						+ blogid).then(function(response) {
+							$route.reload();
 
 		});
 	}

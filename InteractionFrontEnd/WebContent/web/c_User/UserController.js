@@ -1,5 +1,5 @@
 myApp.controller("UserController", function($scope, $http, $location,
-		$rootScope) {
+		$rootScope, $cookieStore) {
 
 	$scope.User = {
 		'loginname' : '',
@@ -15,7 +15,7 @@ myApp.controller("UserController", function($scope, $http, $location,
 	$scope.register = function() {
 		console.log('Enter the Register Function');
 		$scope.User.role = 'ROLE_USER';
-		$http.post('http://localhost:8083/InteractionMiddleware/registerUser',
+		$http.post('http://localhost:8083/InteractionMiddleWare/registerUser',
 				$scope.User).then(function(response) {
 			console.log("Registered");
 			$location.path("/login");
@@ -24,12 +24,12 @@ myApp.controller("UserController", function($scope, $http, $location,
 
 	$scope.logincheck = function() {
 		console.log('Enter the Login Check Function')
-		$http.post('http://localhost:8083/InteractionMiddleware/checkUser',
+		$http.post('http://localhost:8083/InteractionMiddleWare/checkUser',
 				$scope.User).then(function(response) {
 			console.log('Login Checked');
 			$scope.User = response.data;
 			$rootScope.currentUser = response.data;
-			/*$cookieStore.put('user', response.data);*/
+			$cookieStore.put('user', response.data);
 			console.log($rootScope.currentUser);
 			$location.path("/userhome");
 		});
@@ -38,7 +38,7 @@ myApp.controller("UserController", function($scope, $http, $location,
 	$scope.logout = function() {
 		console.log('I am in logout Function');
 		delete $rootScope.currentUser;
-		/*$cookieStore.remove('user');*/
+		$cookieStore.remove('user');
 		$location.path("/logout");
 	}
 

@@ -1,26 +1,33 @@
 <html>
 <head>
-<title>HelloChatApp</title>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
+<title>Interaction-Main Page</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
 
-<script src="RouteConfig.js"></script>
+<script src="web/RouteConfig.js"></script>
 <script src="web/c_Blog/BlogController.js"></script>
-<script src="web/c_User/UserController.js"></script>
-<script src="web/c_Friend/FriendController.js"></script>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.3/lodash.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.3/lodash.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
 
 </head>
 <body ng-app="myApp">
+
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -28,26 +35,22 @@
 			</div>
 		</div>
 		<ul class="nav navbar-nav">
-			<li><a class="nav-link" href="#/home">Home</a>
+			<li>
+			<li><a class="nav-link" href="#/home">Home</a></li>
+
 			<li><a class="nav-link" href="#/login">Login</a></li>
 			<li><a class="nav-link" href="#/register">Register</a></li>
-			<li><a class="nav-link" href="#/chat">Chat</a>
-			<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Blog<span
-					class="caret"></span></a>
+			<li><a class="nav-link" href="#/chat">Chat</a></li>
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#">Blog<span class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a class="nav-link" href="#/addBlog">Create a Blog</a></li>
+					<li><a class="nav-link" href="#/AddBlog">Create a Blog</a></li>
 					<li><a class="nav-link" href="#/AdminBlog">Manage Blogs</a></li>
 					<li><a class="nav-link" href="#/showBlogs">Show Blogs</a></li>
 				</ul></li>
-			<!-- 		<li><a class="dropdown" ng-hide="curretnUser"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Job</a>
-				<ul class="dropdown-menu">
-				<li> <a class="nav-link" href="#/ApplyJob">Apply Job</a></li>
-				<li><a class="nav-link" href="#/AddJob">Add Job</a></li>
-				<li><a href="nav-link" href="#/ShowAllJobs">Show Jobs</a></li> -->
 
-			<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Friend
-					<span class="caret"></span>
-			</a>
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="">Friend <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a class="nav-link" href="#/showfriendlist">Friend
 							List</a></li>
